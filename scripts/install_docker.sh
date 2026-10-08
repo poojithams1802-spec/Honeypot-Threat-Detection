@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+﻿#!/usr/bin/env bash
 # ==============================================================================
 # Cowrie Honeypot - Docker & Docker Compose Installation Script for Ubuntu
 # ==============================================================================
