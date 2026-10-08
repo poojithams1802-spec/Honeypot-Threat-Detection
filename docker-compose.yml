@@ -1,0 +1,30 @@
+# ==============================================================================
+# Cowrie Honeypot - Docker Compose Configuration
+# ==============================================================================
+# CRITICAL SECURITY NOTICE:
+# - Ports are strictly bound to '127.0.0.1' (the VM's local loopback interface).
+# - NEVER bind to '0.0.0.0' or expose these ports to the public internet!
+# - This honeypot must remain confined to an isolated lab network or VM internal
+#   interface only.
+# - If testing across a private multi-VM lab subnet (e.g. VirtualBox Host-Only or
+#   VMware Custom VMnet), bind specifically to that isolated lab IP
+#   (e.g., 192.168.56.10:2222:2222), NEVER a bridged or public IP.
+# ==============================================================================
+
+services:
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: cowrie-honeypot
+    restart: unless-stopped
+    ports:
+      # SSH Honeypot: Host port 2222 -> Container port 2222
+      # Bound strictly to 127.0.0.1 to avoid public/external exposure
+      - "127.0.0.1:2222:2222"
+      # Telnet Honeypot: Host port 2223 -> Container port 2223
+      # Bound strictly to 127.0.0.1 to avoid public/external exposure
+      - "127.0.0.1:2223:2223"
+    volumes:
+      # Mount host directory for Cowrie JSON logs (cowrie.json) and activity logs
+      - ./data/cowrie_logs:/cowrie/cowrie-git/var/log/cowrie
+    environment:
+      - COWRIE_TELNET_ENABLED=yes

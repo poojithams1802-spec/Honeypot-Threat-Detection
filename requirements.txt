@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+joblib
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+python-dotenv
+matplotlib
+seaborn
+pytest

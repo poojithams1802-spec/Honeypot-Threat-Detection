@@ -1,0 +1,56 @@
+# Python Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Cowrie and Experiment Data (ignore all generated logs and datasets)
+data/*
+!data/cowrie_logs/
+!data/raw/
+!data/processed/
+data/cowrie_logs/*
+!data/cowrie_logs/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/**/.gitkeep
+
+# Trained Machine Learning Model Artifacts
+models/*.joblib
+models/*.pkl
+models/*.pt
+models/*.onnx
+!models/.gitkeep
+
+# IDE and OS metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
