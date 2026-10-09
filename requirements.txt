@@ -10,3 +10,4 @@ python-dotenv
 matplotlib
 seaborn
 pytest
+httpx

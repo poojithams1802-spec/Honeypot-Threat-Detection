@@ -1,0 +1,6 @@
+run_id,label,scenario_script,attacker_ip,target,start_time_utc,end_time_utc,seed,parameters_json
+r1,normal,normal.py,1.1.1.1,172.28.0.10,2023-01-01T10:00:00Z,2023-01-01T10:00:20Z,1,{}
+r2,recon,recon.py,2.2.2.2,172.28.0.10,2023-01-01T10:04:59Z,2023-01-01T10:05:03Z,2,{}
+r3,brute_force,brute_force.py,3.3.3.3,172.28.0.10,2023-01-01T10:09:59Z,2023-01-01T10:10:06Z,3,{}
+r4,command_attack,command_attack.py,4.4.4.4,172.28.0.10,2023-01-01T10:14:59Z,2023-01-01T10:15:16Z,4,{}
+r5,normal,normal.py,5.5.5.5,172.28.0.10,2023-01-01T10:19:59Z,2023-01-01T10:20:11Z,5,{}

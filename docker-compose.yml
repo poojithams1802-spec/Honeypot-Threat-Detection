@@ -1,21 +1,33 @@
 # ==============================================================================
-# Cowrie Honeypot - Docker Compose Configuration
+# Honeypot-ML Docker Compose Configuration
 # ==============================================================================
 # CRITICAL SECURITY NOTICE:
-# - Ports are strictly bound to '127.0.0.1' (the VM's local loopback interface).
+# - Cowrie ports are strictly bound to '127.0.0.1' (the VM's local loopback interface).
 # - NEVER bind to '0.0.0.0' or expose these ports to the public internet!
 # - This honeypot must remain confined to an isolated lab network or VM internal
 #   interface only.
-# - If testing across a private multi-VM lab subnet (e.g. VirtualBox Host-Only or
-#   VMware Custom VMnet), bind specifically to that isolated lab IP
-#   (e.g., 192.168.56.10:2222:2222), NEVER a bridged or public IP.
+# - The "honeynet" bridge network is internal to Docker; it is NOT routable
+#   from outside the host.
 # ==============================================================================
 
+networks:
+  honeynet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
 services:
+  # --------------------------------------------------------------------------
+  # Cowrie Honeypot
+  # --------------------------------------------------------------------------
   cowrie:
     image: cowrie/cowrie:latest
     container_name: cowrie-honeypot
     restart: unless-stopped
+    networks:
+      honeynet:
+        ipv4_address: 172.28.0.10
     ports:
       # SSH Honeypot: Host port 2222 -> Container port 2222
       # Bound strictly to 127.0.0.1 to avoid public/external exposure
@@ -28,3 +40,89 @@ services:
       - ./data/cowrie_logs:/cowrie/cowrie-git/var/log/cowrie
     environment:
       - COWRIE_TELNET_ENABLED=yes
+
+  # --------------------------------------------------------------------------
+  # Attacker containers (Phase 2)
+  # These are idle by default (sleep infinity). Attack scripts are executed
+  # into running containers via "docker compose exec".
+  # Activate with:  docker compose --profile attackers up -d
+  # --------------------------------------------------------------------------
+  attacker-1:
+    build:
+      context: ./attacks
+      dockerfile: Dockerfile
+    container_name: attacker-1
+    profiles: ["attackers"]
+    networks:
+      honeynet:
+        ipv4_address: 172.28.0.21
+    command: sleep infinity
+    volumes:
+      - ./attacks:/attacks
+      - ./data/raw:/data/raw
+
+  attacker-2:
+    build:
+      context: ./attacks
+      dockerfile: Dockerfile
+    container_name: attacker-2
+    profiles: ["attackers"]
+    networks:
+      honeynet:
+        ipv4_address: 172.28.0.22
+    command: sleep infinity
+    volumes:
+      - ./attacks:/attacks
+      - ./data/raw:/data/raw
+
+  attacker-3:
+    build:
+      context: ./attacks
+      dockerfile: Dockerfile
+    container_name: attacker-3
+    profiles: ["attackers"]
+    networks:
+      honeynet:
+        ipv4_address: 172.28.0.23
+    command: sleep infinity
+    volumes:
+      - ./attacks:/attacks
+      - ./data/raw:/data/raw
+
+  attacker-4:
+    build:
+      context: ./attacks
+      dockerfile: Dockerfile
+    container_name: attacker-4
+    profiles: ["attackers"]
+    networks:
+      honeynet:
+        ipv4_address: 172.28.0.24
+    command: sleep infinity
+    volumes:
+      - ./attacks:/attacks
+      - ./data/raw:/data/raw
+
+  # --------------------------------------------------------------------------
+  # PostgreSQL Database (Phase 5+)
+  # --------------------------------------------------------------------------
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-honeypot_db}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-honeypot_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

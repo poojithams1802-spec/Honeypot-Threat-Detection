@@ -1,0 +1,22 @@
+{
+    "RandomForest": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+    },
+    "Dummy": {
+        "accuracy": 0.24175824175824176,
+        "macro_f1": 0.09734513274336283,
+        "weighted_f1": 0.09413595254303218
+    },
+    "DecisionTree": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+    },
+    "LogisticRegression": {
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "weighted_f1": 1.0
+    }
+}

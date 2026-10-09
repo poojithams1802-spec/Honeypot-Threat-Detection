@@ -54,3 +54,8 @@ models/*.onnx
 *.swo
 .DS_Store
 Thumbs.db
+
+*.db
+*.sqlite3
+__pycache__/
+.pytest_cache/
